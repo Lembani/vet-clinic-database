@@ -1,3 +1,9 @@
+<!--
+ Copyright (C) Lembani Sakala - All rights reserved.
+ Unauthorized copying of this file, via any medium is strictly prohibited. 
+ Proprietary and confidential.
+-->
+
 # Vet Clinic Database
 
 > A database for a vet clinic containing information about animals.
