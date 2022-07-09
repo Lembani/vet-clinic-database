@@ -45,7 +45,8 @@ VALUES ('Vet William Tatcher', 45, 'Apr 23 2000'),
 ('Vet Stephanie Mendez', 64, 'May 4 1981'),
 ('Vet Jack Harkness', 38,'Jun 8 2008');
 
-INSERT INTO SPECIALIZATIONS (species_id, vets_id) VALUES (1,1),(1,3),(2,3),(2,4);
+INSERT INTO specializations (species_id, vet_id)
+ VALUES ( (SELECT id FROM species WHERE name = 'Pokemon'), (SELECT id FROM vets WHERE name = 'William Tatcher'));
 
 INSERT INTO VISITS (animals_id, vets_id, date_of_visit)
 VALUES (4,1,'05/24/2020'),
@@ -68,4 +69,3 @@ VALUES (4,1,'05/24/2020'),
  (3,2,'08/24/2020'),
  (9,3,'05/24/2020'),
  (9,1,'01/11/2021');
- 
