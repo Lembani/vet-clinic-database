@@ -14,13 +14,13 @@ SELECT * FROM ANIMALS WHERE weight_kg >= 10.4 AND weight_kg <= 17.3;
 /*TRANSACTIONS*/
 
 BEGIN;
-UPDATE ANIMALS SET species = 'unspecified';
+UPDATE ANIMALS SET SPECIES = 'unspecified';
 SELECT * FROM ANIMALS;
 ROLLBACK;
 
 BEGIN;
- UPDATE ANIMALS SET species = 'digimon' WHERE name LIKE '%mon';
- UPDATE ANIMALS SET species = 'pokemon' WHERE species IS null;
+ UPDATE ANIMALS SET SPECIES = 'digimon' WHERE name LIKE '%mon';
+ UPDATE ANIMALS SET SPECIES = 'pokemon' WHERE SPECIES IS null;
  SELECT * FROM ANIMALS;
 COMMIT;
 
@@ -49,17 +49,17 @@ SELECT COUNT(*) FROM ANIMALS;
 /*Animals which never tried to escape*/
 SELECT COUNT(*) FROM ANIMALS WHERE escape_attempts = 0;
 
-/*Average weight of animals*/
+/*Average weight of ANIMALS*/
 SELECT AVG(weight_kg) FROM ANIMALS;
 
-/*Which animal escapes the most, neutered or not neutered animals*/
+/*Which animal escapes the most, neutered or not neutered ANIMALS*/
 SELECT neutered, MAX(escape_attempts) FROM ANIMALS GROUP BY neutered;
 
 /*Minimum and maximum weight of each type of animal*/
-SELECT species, MAX(weight_kg), MIN(weight_kg) FROM ANIMALS GROUP BY species;
+SELECT SPECIES, MAX(weight_kg), MIN(weight_kg) FROM ANIMALS GROUP BY SPECIES;
 
 /*Average number of escape attempts per animal type of those born between 1990 and 2000*/
-SELECT species, AVG(escape_attempts) FROM ANIMALS WHERE date_of_birth BETWEEN '1990-01-01' AND '2000-12-31' GROUP BY species;
+SELECT SPECIES, AVG(escape_attempts) FROM ANIMALS WHERE date_of_birth BETWEEN '1990-01-01' AND '2000-12-31' GROUP BY SPECIES;
 
 
 /*JOINS*/
@@ -76,5 +76,21 @@ SELECT OWNERS.full_name, ANIMALS.name AS name_of_animals, SPECIES.name AS name_o
 
 SELECT name, escape_attempts, full_name FROM ANIMALS JOIN OWNERS ON OWNERS.id = ANIMALS.owner_id WHERE OWNERS.full_name = 'Dean Winchester' AND ANIMALS.escape_attempts = 0;
 
-SELECT full_name, COUNT(animals.owner_id) AS Owns FROM OWNERS JOIN ANIMALS ON ANIMALS.owner_id = OWNERS.id GROUP BY full_name ORDER BY Owns DESC;
+SELECT full_name, COUNT(ANIMALS.owner_id) AS Owns FROM OWNERS JOIN ANIMALS ON ANIMALS.owner_id = OWNERS.id GROUP BY full_name ORDER BY Owns DESC;
 
+
+SELECT ANIMALS.name FROM VISITS JOIN ANIMALS ON animals_id=ANIMALS.id WHERE vets_id=1 ORDER BY date_of_visit DESC LIMIT 1;
+
+SELECT * FROM VISITS WHERE vets_id=3;
+
+SELECT * from VETS LEFT OUTER JOIN SPECIALIZATIONS ON vets_id=id;
+
+SELECT ANIMALS.name FROM ANIMALS JOIN VISITS ON ANIMALS.id=VISITS.animals_id WHERE vets_id=3 AND date_of_visit>'2020-04-01' AND date_of_visit<'2020-08-30';
+
+SELECT ANIMALS.name FROM VISITS join ANIMALS ON ANIMALS.id =animals_id GROUP BY animals_id,ANIMALS.name ORDER BY COUNT(*) DESC LIMIT 1;
+
+SELECT ANIMALS.name FROM VISITS JOIN ANIMALS ON ANIMALS.id=VISITS.animals_id WHERE VISITS.vets_id=2 ORDER BY date_of_visit LIMIT 1;
+
+SELECT ANIMALS.name,VETS.name,date_of_visit FROM VISITS,ANIMALS,VETS ORDER BY date_of_visit LIMIT 1;
+
+SELECT VETS.name, SPECIES.name from VETS INNER JOIN SPECIALIZATIONS ON VETS.id!=SPECIALIZATIONS.vets_id JOIN SPECIES ON SPECIES.id !=SPECIALIZATIONS.species_id where VETS.name='Maisy Smith' LIMIT 1;
