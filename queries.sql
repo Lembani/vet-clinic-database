@@ -9,3 +9,11 @@ SELECT name, escape_attempts FROM ANIMALS WHERE weight_kg > 10.5;
 SELECT * FROM ANIMALS WHERE neutered = true;
 SELECT * FROM ANIMALS WHERE name NOT LIKE 'Gabumon';
 SELECT * FROM ANIMALS WHERE weight_kg >= 10.4 AND weight_kg <= 17.3;
+
+
+/*TRANSACTIONS*/
+
+BEGIN;
+UPDATE ANIMALS SET species = 'unspecified';
+SELECT * FROM ANIMALS;
+ROLLBACK;
