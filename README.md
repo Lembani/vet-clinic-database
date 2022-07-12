@@ -37,6 +37,12 @@ $ cd vet-clinic-database
 - Twitter: [@lembani_](https://twitter.com/lembani_)
 - LinkedIn: [lembani-sakala](https://linkedin.com/in/lembani-sakala)
 
+👤 **Onomeh Onwuanibe**
+
+- GitHub: [@githubhandle](https://github.com/Estherstarr/)
+- Twitter: [@twitterhandle](https://twitter.com/AnibeEsther)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/onwuanibeonome)
+
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
