@@ -93,3 +93,8 @@ SELECT ANIMALS.name FROM VISITS JOIN ANIMALS ON ANIMALS.id=VISITS.animals_id WHE
 SELECT ANIMALS.name,VETS.name,date_of_visit FROM VISITS,ANIMALS,VETS ORDER BY date_of_visit LIMIT 1;
 
 SELECT VETS.name, SPECIES.name from VETS INNER JOIN SPECIALIZATIONS ON VETS.id!=SPECIALIZATIONS.vets_id JOIN SPECIES ON SPECIES.id !=SPECIALIZATIONS.species_id where VETS.name='Maisy Smith' LIMIT 1;
+
+
+explain analyze SELECT COUNT(*) FROM visits where animal_id = 4;
+explain analyze SELECT * FROM visits where vet_id = 2;
+explain analyze SELECT * FROM owners where email = 'owner_18327@mail.com';
