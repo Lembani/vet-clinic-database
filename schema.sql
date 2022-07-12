@@ -48,3 +48,14 @@ CREATE TABLE VISITS (
   CONSTRAINT fk_visits_vet FOREIGN KEY(vets_id) REFERENCES VETS(id)
 );
 
+
+ALTER TABLE OWNERS ADD COLUMN email VARCHAR(120);
+
+ALTER TABLE OWNERS ALTER COLUMN age DROP NOT NULL;
+
+
+CREATE INDEX index_animal_id ON visits (animals_id);
+
+CREATE INDEX index_vet_id ON visits (vets_id);
+
+CREATE INDEX index_email ON owners (email);
