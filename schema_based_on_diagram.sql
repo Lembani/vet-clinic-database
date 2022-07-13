@@ -21,3 +21,11 @@ CREATE TABLE medical_histories (
   status VARCHAR(200),
   CONSTRAINT fk_patients FOREIGN KEY(patient_id) REFERENCES patients(id)
 );
+
+CREATE TABLE medical_treatments (
+  id INT SERIAL PRIMARY KEY,
+  treatment_id INT,
+  medical_histories_id INT,
+  CONSTRAINT fk_treatments FOREIGN KEY(treatment_id) REFERENCES treatments(id),
+  CONSTRAINT fk_medical_histories FOREIGN KEY(medical_histories_id) REFERENCES medical_histories(id)
+);
