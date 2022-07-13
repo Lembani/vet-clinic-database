@@ -1,3 +1,4 @@
+CREATE DATABASE clinic;
 
 CREATE TABLE patients (
   id INT SERIAL PRIMARY KEY,
@@ -49,3 +50,9 @@ CREATE TABLE treatments (
   medical_histories_id INT,
   CONSTRAINT fk_medical_histories FOREIGN KEY(medical_histories_id) REFERENCES medical_histories(id)
 );
+
+
+-- FOREIGN KEY INDEXES
+
+CREATE INDEX idx_medical_histories_patient_id ON medical_histories(patient_id);
+
